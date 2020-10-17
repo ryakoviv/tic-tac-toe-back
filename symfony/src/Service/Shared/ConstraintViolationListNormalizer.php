@@ -1,14 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Shared;
 
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
-/**
- * Class ConstraintViolationListNormalizer
- * @package App\Infrastructure\Normalizer
- */
+
 final class ConstraintViolationListNormalizer implements NormalizerInterface
 {
     /**
@@ -26,6 +25,7 @@ final class ConstraintViolationListNormalizer implements NormalizerInterface
             'violations' => $violations,
         ];
     }
+
     /**
      * @param ConstraintViolationListInterface $constraintViolationList
      * @return array
@@ -45,6 +45,7 @@ final class ConstraintViolationListNormalizer implements NormalizerInterface
         }
         return [$messages, $violations];
     }
+
     /**
      * @param mixed $data
      * @param string $format

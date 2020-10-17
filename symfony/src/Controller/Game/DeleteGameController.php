@@ -43,7 +43,8 @@ class DeleteGameController extends AbstractController
         if (\count($validationErrors) > 0) {
             return View::create($validationErrors, Response::HTTP_BAD_REQUEST);
         }
+        $this->service->delete($request);
 
-        return View::create($this->service->delete($request), Response::HTTP_OK);
+        return View::create(null, Response::HTTP_OK);
     }
 }

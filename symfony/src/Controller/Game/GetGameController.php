@@ -7,7 +7,6 @@ namespace App\Controller\Game;
 use App\Controller\AbstractController;
 use App\Request\Game\GetGameRequest;
 use App\Service\Game\GetGameService;
-use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
