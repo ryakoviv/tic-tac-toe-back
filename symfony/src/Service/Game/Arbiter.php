@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Game;
 
-use App\Entity\Game;
+use App\Entity\Game\Game;
 use App\Exception\Game\InvalidMoveException;
 use App\Model\Game\Board;
 use App\Model\Game\Status;

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Game;
+namespace App\UseCase\Game;
 
 use App\Factory\Game\GameResponseFactoryInterface;
-use App\Repository\GameRepositoryInterface;
+use App\Repository\Game\GameRepositoryInterface;
 use App\Request\Game\GetGameRequest;
 use App\Response\Game\GameResponse;
 use Ramsey\Uuid\Uuid;
 
-class GetGameService
+class GetGameUseCase
 {
     /**
      * @var GameRepositoryInterface

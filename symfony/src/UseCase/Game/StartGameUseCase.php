@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Game;
+namespace App\UseCase\Game;
 
 use App\Factory\Game\BoardFactoryInterface;
 use App\Factory\Game\GameFactoryInterface;
 use App\Factory\Game\GameResponseFactoryInterface;
-use App\Repository\GameRepositoryInterface;
+use App\Repository\Game\GameRepositoryInterface;
 use App\Request\Game\StartGameRequest;
 use App\Response\Game\StartGameResponse;
+use App\Service\Game\ArbiterInterface;
+use App\Service\Game\BotPlayer;
 
-class StartGameService
+class StartGameUseCase
 {
     /**
      * @var GameRepositoryInterface

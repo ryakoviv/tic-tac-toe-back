@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Game;
 
-use App\Entity\Game;
+use App\Entity\Game\Game;
 
 interface BotPlayer
 {

@@ -5,45 +5,46 @@ declare(strict_types=1);
 namespace App\Controller\Game;
 
 use App\Controller\AbstractController;
+use App\Exception\BadRequestException;
 use App\Request\Game\GetGameRequest;
-use App\Service\Game\GetGameService;
+use App\Response\Game\GameResponse;
+use App\UseCase\Game\GetGameUseCase;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class GetGameController extends AbstractController
 {
     /**
-     * @var GetGameService
+     * @var GetGameUseCase
      */
-    private $service;
+    private $useCase;
 
     /**
      * @var ValidatorInterface
      */
     private $validator;
 
-    public function __construct(GetGameService $service, ValidatorInterface $validator)
+    public function __construct(GetGameUseCase $useCase, ValidatorInterface $validator)
     {
-        $this->service = $service;
+        $this->useCase = $useCase;
         $this->validator = $validator;
     }
 
     /**
      * @Rest\Get(path="/api/v1/games/{gameId}")
+     * @Rest\View()
      */
-    public function execute(string $gameId, Request $httpRequest): View
+    public function execute(string $gameId, Request $httpRequest): GameResponse
     {
         $this->validateRequest($httpRequest);
 
         $request = (new GetGameRequest())->setGameId($gameId);
         $validationErrors = $this->validator->validate($request);
         if (\count($validationErrors) > 0) {
-            return View::create($validationErrors, Response::HTTP_BAD_REQUEST);
+            throw BadRequestException::fromValidation($validationErrors);
         }
 
-        return View::create($this->service->get($request), Response::HTTP_OK);
+        return $this->useCase->get($request);
     }
 }

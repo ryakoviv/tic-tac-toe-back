@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory\Game;
 
-use App\Entity\Game;
+use App\Entity\Game\Game;
 use App\Model\Game\Board;
 
 interface GameFactoryInterface

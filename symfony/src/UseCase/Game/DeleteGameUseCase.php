@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Game;
+namespace App\UseCase\Game;
 
-use App\Repository\GameRepositoryInterface;
+use App\Repository\Game\GameRepositoryInterface;
 use App\Request\Game\DeleteGameRequest;
 use Ramsey\Uuid\Uuid;
 
-class DeleteGameService
+class DeleteGameUseCase
 {
     /**
      * @var GameRepositoryInterface

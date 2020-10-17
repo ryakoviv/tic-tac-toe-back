@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Repository\Game;
 
-use App\Entity\Game;
+use App\Entity\Game\Game;
 use Ramsey\Uuid\UuidInterface;
 
 interface GameRepositoryInterface

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Game;
 
 use App\Model\Game\Board;
 use App\Model\Game\Status;
-use App\Repository\GameRepository;
+use App\Repository\Game\GameRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 

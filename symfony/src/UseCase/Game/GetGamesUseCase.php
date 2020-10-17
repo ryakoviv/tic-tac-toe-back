@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Game;
+namespace App\UseCase\Game;
 
 use App\Factory\Game\GameResponseFactoryInterface;
-use App\Repository\GameRepositoryInterface;
+use App\Repository\Game\GameRepositoryInterface;
 
-class GetGamesService
+class GetGamesUseCase
 {
     /**
      * @var GameRepositoryInterface

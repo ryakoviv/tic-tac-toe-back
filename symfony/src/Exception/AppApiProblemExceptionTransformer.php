@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Exception;
 
-use Phpro\ApiProblem\Http\HttpApiProblem;
 use Phpro\ApiProblemBundle\Transformer\ExceptionTransformerInterface;
 use Phpro\ApiProblem\ApiProblemInterface;
 use Symfony\Component\HttpFoundation\Response;

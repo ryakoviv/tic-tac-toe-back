@@ -5,46 +5,44 @@ declare(strict_types=1);
 namespace App\Controller\Game;
 
 use App\Controller\AbstractController;
+use App\Exception\BadRequestException;
 use App\Request\Game\DeleteGameRequest;
-use App\Service\Game\DeleteGameService;
+use App\UseCase\Game\DeleteGameUseCase;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class DeleteGameController extends AbstractController
 {
     /**
-     * @var DeleteGameService
+     * @var DeleteGameUseCase
      */
-    private $service;
+    private $useCase;
 
     /**
      * @var ValidatorInterface
      */
     private $validator;
 
-    public function __construct(DeleteGameService $service, ValidatorInterface $validator)
+    public function __construct(DeleteGameUseCase $useCase, ValidatorInterface $validator)
     {
-        $this->service = $service;
+        $this->useCase = $useCase;
         $this->validator = $validator;
     }
 
     /**
      * @Rest\Delete(path="/api/v1/games/{gameId}")
+     * @Rest\View()
      */
-    public function execute(string $gameId, Request $httpRequest): View
+    public function execute(string $gameId, Request $httpRequest): void
     {
         $this->validateRequest($httpRequest);
 
         $request = (new DeleteGameRequest())->setGameId($gameId);
         $validationErrors = $this->validator->validate($request);
         if (\count($validationErrors) > 0) {
-            return View::create($validationErrors, Response::HTTP_BAD_REQUEST);
+            throw BadRequestException::fromValidation($validationErrors);
         }
-        $this->service->delete($request);
-
-        return View::create(null, Response::HTTP_OK);
+        $this->useCase->delete($request);
     }
 }
