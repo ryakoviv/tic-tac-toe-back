@@ -23,3 +23,8 @@ stop:
 
 down:
 	docker-compose down
+
+run:
+	make build
+	make start
+	make vendor
