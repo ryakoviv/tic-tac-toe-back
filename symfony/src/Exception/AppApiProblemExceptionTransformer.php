@@ -17,6 +17,7 @@ class AppApiProblemExceptionTransformer implements ExceptionTransformerInterface
         \App\Exception\ServiceUnavailableException::class => Response::HTTP_SERVICE_UNAVAILABLE,
         \App\Exception\ForbiddenException::class => Response::HTTP_FORBIDDEN,
         \App\Exception\BadRequestException::class => Response::HTTP_BAD_REQUEST,
+        \Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException::class => Response::HTTP_BAD_REQUEST,
     ];
 
     public function transform(\Throwable $exception): ApiProblemInterface

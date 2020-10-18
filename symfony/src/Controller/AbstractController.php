@@ -13,7 +13,7 @@ abstract class AbstractController extends AbstractFOSRestController
     protected function validateRequest(Request $httpRequest)
     {
         if ($httpRequest->getContentType() !== 'json') {
-            throw new UnsupportedMediaTypeHttpException();
+            throw new UnsupportedMediaTypeHttpException('Only json content-type is supported');
         }
     }
 
