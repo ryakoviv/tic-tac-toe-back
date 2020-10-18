@@ -8,7 +8,6 @@ use App\Factory\Game\BoardFactoryInterface;
 use App\Factory\Game\GameFactoryInterface;
 use App\Factory\Game\GameResponseFactoryInterface;
 use App\Repository\Game\GameRepositoryInterface;
-use App\Request\Game\StartGameRequest;
 use App\Response\Game\StartGameResponse;
 use App\Service\Game\ArbiterInterface;
 use App\Service\Game\BotPlayer;
@@ -61,13 +60,10 @@ class StartGameUseCase
         $this->arbiter = $arbiter;
     }
 
-    public function start(StartGameRequest $request): StartGameResponse
+    public function start(): StartGameResponse
     {
-        $board = $this->boardFactory->createFromString($request->getBoard());
+        $board = $this->boardFactory->createEmptyBoard();
         $game = $this->gameFactory->create($board);
-        $this->arbiter->validateMove($this->boardFactory->createEmptyBoard(), $game->getBoard());
-        $this->botPlayer->move($game);
-        $this->arbiter->checkGameStatus($game);
         $this->gameRepository->persist($game);
 
         return $this->gameResponseFactory->createStartGameResponse($game);
