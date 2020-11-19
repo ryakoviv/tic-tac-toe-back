@@ -28,7 +28,10 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.21"
+        "symfony/maker-bundle": "^1.21",
+        "johnkary/phpunit-speedtrap": "^3.0",
+        "phpunit/phpunit": "^9.4",
+        "phpmetrics/phpmetrics": "^2.4"
     },
     "config": {
         "optimize-autoloader": true,
@@ -57,6 +60,14 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "./build.sh test"
+        ],
+        "metrics": [
+            "Composer\\Config::disableProcessTimeout",
+            "./build.sh metrics"
+        ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"

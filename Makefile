@@ -12,6 +12,12 @@ vendor-update:
 migrate:
 	$(EXEC_PHP) php bin/console doctrine:migrations:migrate
 
+tests:
+	$(EXEC_PHP) composer test
+
+metrics:
+	$(EXEC_PHP) composer metrics
+
 build:
 	docker-compose build
 
