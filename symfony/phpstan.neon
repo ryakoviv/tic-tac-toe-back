@@ -1,0 +1,12 @@
+parameters:
+    level: max
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    paths:
+        - %currentWorkingDirectory%/src
+    ignoreErrors:
+        -
+            message: '#Unsafe usage of new static#'
+            path: %currentWorkingDirectory%/src
+    excludes_analyse:
+        - %currentWorkingDirectory%/src/Customer/Infrastructure/UI/Controller

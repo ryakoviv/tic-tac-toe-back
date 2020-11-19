@@ -34,3 +34,6 @@ run:
 	make build
 	make start
 	make vendor
+
+phpstan: vendor ## PHPStan (https://github.com/phpstan/phpstan)
+	$(EXEC_PHP) composer phpstan
